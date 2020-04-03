@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-12">
+    <p class="text-center" *ngIf="galleries.length === 0"><strong>Galería de imagenes vacia</strong></p>
+  </div>
+
+  <div class="col-md-6 col-sm-6" *ngFor="let gallery of galleries; let i = index">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ gallery.name }}</h5>
+        <p class="card-text">{{ gallery.description }}</p>
+        <div id="carouselExampleIndicators{{i}}" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div [ngClass]="{'carousel-item': true, 'active': j === 0}" *ngFor="let imagePath of gallery.imagesPath; let j = index">
+              <img src="{{baseUrl}}{{imagePath}}" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators{{i}}" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators{{i}}" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Siguiente</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
